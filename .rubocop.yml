@@ -1,5 +1,14 @@
-Metrics/LineLength:
-  Max: 130
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - vendor/**/*
 
 Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Max: 97
+
+Metrics/LineLength:
+  Max: 130
+

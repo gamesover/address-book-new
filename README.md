@@ -1,6 +1,6 @@
 Address Book 
 ========================
-[![Build Status](https://travis-ci.org/gamesover/address-book.svg?branch=master)](https://travis-ci.org/gamesover/address-book)
+[![Build Status](https://travis-ci.org/gamesover/address-book-pwc.svg?branch=master)](https://travis-ci.org/gamesover/address-book-pwc)
 
 
 
