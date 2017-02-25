@@ -1,4 +1,8 @@
-# README
+Address Book 
+========================
+[![Build Status](https://travis-ci.org/gamesover/address-book.svg?branch=master)](https://travis-ci.org/gamesover/address-book)
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
