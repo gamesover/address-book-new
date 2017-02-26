@@ -1,10 +1,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  user: postgres
-  password: postgres
 
 development:
   <<: *default
@@ -19,5 +17,6 @@ test:
 
 # heroku request
 production:
+  <<: *default
   url:  <%= ENV["DATABASE_URL"] %>
   pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
