@@ -5,6 +5,9 @@ rvm:
 services:
   - postgresql
 
+addons:
+  postgresql: "9.4"
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database address_book_pwc_test;' -U postgres
