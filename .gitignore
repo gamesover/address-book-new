@@ -15,6 +15,5 @@
 
 \.idea/
 /client/node_modules/
-/client/dist/
 
 client/npm-debug\.log
