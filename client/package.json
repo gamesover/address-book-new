@@ -22,9 +22,12 @@
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4",
-    
-    "@types/node": "^6.0.45",
+    "webpack": "2.2.0",
+    "webpack-merge": "^2.4.0"
+  },
+  "devDependencies": {
     "@types/jasmine": "2.5.41",
+    "@types/node": "^6.0.45",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "css-loader": "^0.26.1",
@@ -38,17 +41,17 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.1",
+    "node-sass": "^4.5.0",
     "null-loader": "^0.1.1",
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
+    "sass-loader": "^6.0.2",
     "style-loader": "^0.13.1",
     "typescript": "~2.0.10",
-    "webpack": "2.2.0",
-    "webpack-merge": "^2.4.0",
     "webpack-dev-server": "2.2.0-rc.0"
   },
-  "engines" : {
-    "node" : "6.10.0"
+  "engines": {
+    "node": "6.10.0"
   }
 }
