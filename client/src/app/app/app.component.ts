@@ -8,4 +8,5 @@ import {ViewEncapsulation} from '@angular/core';
     styleUrls: ['./app.component.scss', '../../../public/css/styles.scss']
 })
 export class AppComponent {
+    title = 'From here leap to future';
 }
