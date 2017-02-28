@@ -7,6 +7,7 @@ import {ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None,
     styleUrls: ['./app.component.scss', '../../../public/css/styles.scss']
 })
+
 export class AppComponent {
     title = 'From here leap to future';
 }
