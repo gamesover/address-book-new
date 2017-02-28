@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var helpers = require('./helpers');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -26,12 +27,25 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: 'null-loader'
+        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw-loader'
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+      },
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          configFile: 'tslint.json'
+        }
       }
     ]
   },
