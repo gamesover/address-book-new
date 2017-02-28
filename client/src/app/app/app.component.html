@@ -1,5 +1,23 @@
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div><a href="http://www.pwc.com.au/" class="navbar-brand">{{title}}</a></div>
+            <img src="../../../public/images/PwC.png">
+            <ul class="nav navbar-nav">
+             <!--   <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>-->
+            </ul>
+        </div>
+    </nav>
+</header>
+
 <main>
-    <h1>{{title}}</h1>
-    <img src="../../../public/images/PwC.png">
-    <!--<address-book></address-book>-->
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </main>
+
+<footer>
+    <div class="container">
+    </div>
+</footer>
