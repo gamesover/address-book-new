@@ -21,6 +21,6 @@ before_script:
 
 script:
  - bundle exec rubocop
- - bundle exec rspec pec
+ - bundle exec rspec
  - cd client
  - npm run test
