@@ -1,26 +1,15 @@
-language: node_js
-node_js:
-  - 6.10.0
+language: ruby
+
+rvm:
+  - 2.3.3
 
 addons:
   postgresql: '9.4'
 
-before_install:
-  - rvm install 2.3.3
-
-install:
-  - gem install bundler
-  - bundle
-  - cd client
-  - npm install
-
 before_script:
-  - cd ..
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database address_book_pwc_test;' -U postgres
 
 script:
  - bundle exec rubocop
  - bundle exec rspec
- - cd client
- - npm run test
