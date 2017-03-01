@@ -14,7 +14,5 @@
 !/tmp/.keep
 
 \.idea/
-/client/node_modules/
+client/
 
-client/npm-debug\.log
-/client/dist/
