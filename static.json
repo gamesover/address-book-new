@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://address-book-pwc-2017.herokuapp.com"
+      "origin": "https://address-book-backend.herokuapp.com"
     }
   }
 }
