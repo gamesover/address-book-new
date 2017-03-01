@@ -4,7 +4,7 @@ var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
 
   output: {
     path: helpers.root('dist'),
@@ -22,8 +22,8 @@ module.exports = webpackMerge(commonConfig, {
     stats: 'minimal',
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:3000',
-        secure: false
+        target: 'http://localhost:3000',
+        pathRewrite: {'^/api': ''}
       }
     }
   }
