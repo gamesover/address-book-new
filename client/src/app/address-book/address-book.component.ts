@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
-//import { SMS }        from '../sms/sms';
-//import { SMSService } from '../sms/sms.service';
 
 @Component({
     selector: 'address-book',
@@ -11,41 +7,44 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 
 export class AddressBookComponent implements OnInit {
-    public myForm: FormGroup; // our model driven form
-    public submitted: boolean; // keep track on whether form is submitted
-    public events: any[] = []; // use later to display form changes
+    private rows: any[] = [];
+    private count: number = 0;
+    private offset: number = 0;
+    private limit: number = 10;
 
-    constructor(private _fb: FormBuilder/*, private smsService: SMSService*/) { }
+    ngOnInit() {
+        this.page(this.offset, this.limit);
+    }
 
-    ngOnInit(): void {
-        this.myForm = this._fb.group({
-            to: ['', [<any>Validators.required, <any>Validators.pattern(/^04\d{8}$/)]],
-            message: ['', [<any>Validators.required]]
+    page(offset: any, limit: any) {
+        this.fetch((results: any) => {
+            this.count = results.length;
+
+            const start = offset * limit;
+            const end = start + limit;
+            const rows = [...this.rows];
+
+            for (let i = start; i < end; i++) {
+                rows[i] = results[i];
+            }
+
+            this.rows = rows;
         });
-
-        this.subcribeToFormChanges();
     }
 
-    /*send(/!*sms: SMS, *!/isValid: boolean) {
-        this.submitted = true; // set form submit to true
+    fetch(cb: any) {
+        const req = new XMLHttpRequest();
+        req.open('GET', `api/address_books`);
 
-        if (isValid) {
-            this.smsService.send(sms)
-                .then(() => this.myForm.reset());
-        }
-    }*/
+        req.onload = () => {
+            cb(JSON.parse(req.response));
+        };
 
-    resetForm() {
-
+        req.send();
     }
 
-    subcribeToFormChanges() {
-        // initialize stream
-        const myFormValueChanges$ = this.myForm.valueChanges;
-
-        // subscribe to the stream
-        myFormValueChanges$.subscribe(x => this.events
-            .push({ event: 'STATUS CHANGED', object: x }));
+    onPage(event: any) {
+        this.page(event.offset, event.limit);
     }
 }
 

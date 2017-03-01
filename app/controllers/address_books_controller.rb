@@ -5,7 +5,14 @@ class AddressBooksController < ApplicationController
   def index
     @address_books = AddressBook.all
 
-    render json: @address_books
+    address_books = @address_books.map do |address_book|
+      {
+        email: address_book.email,
+        name: address_book.name
+      }
+    end
+
+    render json: address_books
   end
 
   # GET /address_books/1
@@ -22,20 +29,6 @@ class AddressBooksController < ApplicationController
     else
       render json: @address_book.errors, status: :unprocessable_entity
     end
-  end
-
-  # PATCH/PUT /address_books/1
-  def update
-    if @address_book.update(address_book_params)
-      render json: @address_book
-    else
-      render json: @address_book.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /address_books/1
-  def destroy
-    @address_book.destroy
   end
 
   private
