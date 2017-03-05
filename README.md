@@ -1,4 +1,6 @@
-# README #
+Address Book Frontend
+========================
+[![Build Status](https://travis-ci.org/gamesover/address-book-frontend.svg?branch=master)](https://travis-ci.org/gamesover/address-book-frontend)
 
 This is front end part of Address Book demo. Please access to online app at [heroku](https://address-book-frontend.herokuapp.com/)
 
