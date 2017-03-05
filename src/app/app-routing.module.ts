@@ -1,21 +1,20 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule}             from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-/*import { DashboardComponent }   from './dashboard/dashboard.component';
-import { HeroesComponent }      from './heroes/heroes.component';
-import { HeroDetailComponent }  from './hero-detail/hero-detail.component';*/
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {AddressBookComponent} from "./address-book/address-book.component";
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AddressBooksComponent} from './address-books/address-books.component';
+import {FileUploadComponent} from './file-upload/file-upload.component';
 
 const routes: Routes = [
-   /* { path: 'crisis-center', component: CrisisListComponent },*/
-    { path: 'address-books',        component: AddressBookComponent },
-    { path: '',   redirectTo: '/address-books', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundComponent }
+    {path: 'address-books', component: AddressBooksComponent},
+    {path: 'address-books/file-upload', component: FileUploadComponent},
+    {path: '', redirectTo: '/address-books', pathMatch: 'full'},
+    {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
-    exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

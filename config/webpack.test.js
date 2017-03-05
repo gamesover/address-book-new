@@ -27,7 +27,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+        loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?sourceMap'})
       },
       {
         test: /\.css$/,
@@ -42,6 +42,7 @@ module.exports = {
       {
         test: /\.ts$/,
         enforce: 'pre',
+        exclude: /node_modules/,
         loader: 'tslint-loader',
         options: {
           configFile: 'tslint.json'
@@ -56,6 +57,7 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       helpers.root('./src'), // location of your src
       {} // a map of your routes
-    )
+    ),
+    new ExtractTextPlugin('[name].css')
   ]
 }

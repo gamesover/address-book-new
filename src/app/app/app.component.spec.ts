@@ -9,6 +9,9 @@ describe('App', () => {
             declarations: [AppComponent]
         });
     });
+    it('1 + 1 => 2', () => {
+        expect(1 + 1).toBe(2);
+    });
     it ('should work', () => {
         let fixture = TestBed.createComponent(AppComponent);
         expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
