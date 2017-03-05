@@ -19,124 +19,24 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe AddressBooksController, type: :controller do
-  # This should return the minimal set of attributes required to create a valid
-  # AddressBook. As you add validations to AddressBook, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
-
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AddressBooksController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  subject(:address_book) { build(:address_book) }
 
   describe 'GET #index' do
-    it 'assigns all address_books as @address_books' do
-      address_book = AddressBook.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:address_books)).to eq([address_book])
-    end
-  end
-
-  describe 'GET #show' do
-    it 'assigns the requested address_book as @address_book' do
-      address_book = AddressBook.create! valid_attributes
-      get :show, params: { id: address_book.to_param }, session: valid_session
-      expect(assigns(:address_book)).to eq(address_book)
-    end
-  end
-
-  describe 'POST #create' do
-    context 'with valid params' do
-      it 'creates a new AddressBook' do
-        expect do
-          post :create, params: { address_book: valid_attributes }, session: valid_session
-        end.to change(AddressBook, :count).by(1)
-      end
-
-      it 'assigns a newly created address_book as @address_book' do
-        post :create, params: { address_book: valid_attributes }, session: valid_session
-        expect(assigns(:address_book)).to be_a(AddressBook)
-        expect(assigns(:address_book)).to be_persisted
-      end
-
-      it 'redirects to the created address_book' do
-        post :create, params: { address_book: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(AddressBook.last)
-      end
+    it 'get 200 status' do
+      get :index
+      expect(response.status).to be(200)
     end
 
-    context 'with invalid params' do
-      it 'assigns a newly created but unsaved address_book as @address_book' do
-        post :create, params: { address_book: invalid_attributes }, session: valid_session
-        expect(assigns(:address_book)).to be_a_new(AddressBook)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: { address_book: invalid_attributes }, session: valid_session
-        expect(response).to render_template('new')
-      end
-    end
-  end
-
-  describe 'PUT #update' do
-    context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested address_book' do
-        address_book = AddressBook.create! valid_attributes
-        put :update, params: { id: address_book.to_param, address_book: new_attributes }, session: valid_session
-        address_book.reload
-        skip('Add assertions for updated state')
-      end
-
-      it 'assigns the requested address_book as @address_book' do
-        address_book = AddressBook.create! valid_attributes
-        put :update, params: { id: address_book.to_param, address_book: valid_attributes }, session: valid_session
-        expect(assigns(:address_book)).to eq(address_book)
-      end
-
-      it 'redirects to the address_book' do
-        address_book = AddressBook.create! valid_attributes
-        put :update, params: { id: address_book.to_param, address_book: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(address_book)
-      end
+    it 'return json response' do
+      get :index
+      expect(response.content_type).to eq('application/json')
     end
 
-    context 'with invalid params' do
-      it 'assigns the address_book as @address_book' do
-        address_book = AddressBook.create! valid_attributes
-        put :update, params: { id: address_book.to_param, address_book: invalid_attributes }, session: valid_session
-        expect(assigns(:address_book)).to eq(address_book)
-      end
-
-      it "re-renders the 'edit' template" do
-        address_book = AddressBook.create! valid_attributes
-        put :update, params: { id: address_book.to_param, address_book: invalid_attributes }, session: valid_session
-        expect(response).to render_template('edit')
-      end
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    it 'destroys the requested address_book' do
-      address_book = AddressBook.create! valid_attributes
-      expect do
-        delete :destroy, params: { id: address_book.to_param }, session: valid_session
-      end.to change(AddressBook, :count).by(-1)
-    end
-
-    it 'redirects to the address_books list' do
-      address_book = AddressBook.create! valid_attributes
-      delete :destroy, params: { id: address_book.to_param }, session: valid_session
-      expect(response).to redirect_to(address_books_url)
+    it 'get created address book' do
+      dummy = create(:address_book)
+      get :index
+      emails = JSON.parse(response.body).map { |address| address['email'] }
+      expect(emails).to include dummy['email']
     end
   end
 end
