@@ -1,25 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { HttpModule } from '@angular/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule}  from '@angular/platform-browser';
+import {AppComponent} from './app/app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {HttpModule} from '@angular/http';
+import {FileUploadModule} from 'ng2-file-upload/ng2-file-upload';
 
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddressBookComponent } from './address-book/address-book.component';
+import {AddressBookService}          from './address-book/address-book.service';
+
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {AddressBooksComponent} from './address-books/address-books.component';
+import {FileUploadComponent} from './file-upload/file-upload.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         AppRoutingModule,
         NgxDatatableModule,
-        HttpModule
+        HttpModule,
+        FileUploadModule
     ],
     declarations: [
         AppComponent,
         PageNotFoundComponent,
-        AddressBookComponent
+        AddressBooksComponent,
+        FileUploadComponent
     ],
-    bootstrap: [ AppComponent ]
+    providers: [AddressBookService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

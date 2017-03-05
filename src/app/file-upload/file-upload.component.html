@@ -1,0 +1,109 @@
+<div class="file-upload-component container">
+    <div class="msgs" *ngFor="let msg of msgs">
+        <div>{{msg}}</div>
+    </div>
+    <div class="warnings" *ngFor="let warning of warnings">
+        <div>{{warning}}</div>
+    </div>
+    <div class="errors" *ngFor="let error of errors">
+        <div>{{error}}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <h3>Select CSV file</h3>
+            <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 (onFileDrop)="fileDrop($event)"
+                 class="well my-drop-zone">
+                CSV File Drop Zone
+            </div>
+            Single file upload
+            <input type="file" ng2FileSelect [uploader]="uploader"/>
+        </div>
+
+        <div class="col-sm-9 right-panel">
+            <h3>Upload CSV</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="name-column">Name</th>
+                    <th>Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <!-- ng2-file-uploader does not support isHTML5 very well, it is a known issue -->
+                    <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    <td *ngIf="uploader.isHTML5">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar"
+                                 [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="sendFile(item)"
+                                [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs"
+                                (click)="removeFile(item)">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div>
+                    Queue progress:
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar"
+                             [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table *ngIf="conflicts.length > 0" class="table table-striped table-hover display">
+        <caption>Please move the mouse and click the name you want</caption>
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Existing Name</th>
+            <th>New Name</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let row of conflicts">
+            <td>{{row.email}}</td>
+            <td class="selectable" [ngClass]="{'selected': corrections[row.email] === 'old'}"
+                (click)="selectName(row.email, 'old')">{{row.old_name}}
+            </td>
+            <td class="selectable" [ngClass]="{'selected': corrections[row.email] === 'new'}"
+                (click)="selectName(row.email, 'new')">{{row.new_name}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
