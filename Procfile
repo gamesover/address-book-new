@@ -1,1 +1,1 @@
-web: bin/start-nginx bundle exec puma -p ${PORT:-3000} -C ./config/puma.rb
+web: bin/start-nginx bundle exec puma -C ./config/puma.rb
