@@ -11,7 +11,7 @@ threads threads_count, threads_count
 #
 port        ENV['PORT'] || 3000
 puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-puts "puma_port is #{puma_port}"
+puts "puma_port is #{port}"
 puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
 # Specifies the `environment` that Puma will run in.
 #
@@ -32,7 +32,7 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 # you need to make sure to reconnect any threads in the `on_worker_boot`
 # block.
 #
-# preload_app!
+preload_app!
 
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
@@ -41,9 +41,9 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 # or connections that may have been created at application boot, Ruby
 # cannot share connections between processes.
 #
-# on_worker_boot do
-#   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-# end
+on_worker_boot do
+  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+end
 on_worker_fork do
   FileUtils.touch('/tmp/app-initialized')
 end
