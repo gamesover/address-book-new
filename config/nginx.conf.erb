@@ -35,9 +35,10 @@ http {
 		server_name _;
 		index index.html;
 		keepalive_timeout 5;
+    root /app/public;
 
     location / {
-  	    root /app/public;
+  	    try_files $uri $uri/ /index.html;
     }
 
   	location /api {
