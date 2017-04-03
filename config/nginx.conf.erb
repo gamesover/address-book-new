@@ -38,7 +38,7 @@ http {
 		root /app/public;
 
   	location /api {
-  	    rewrite    ^/api/?(.*) $1 break;
+  	    rewrite    ^/api/?(.*) /$1 break;
 		    proxy_pass http://app_server/;
     }
 	}
