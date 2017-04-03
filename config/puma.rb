@@ -5,7 +5,7 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-listen      '/tmp/nginx.socket'
+bind        'unix:///tmp/nginx.socket'
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
