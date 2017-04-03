@@ -35,7 +35,10 @@ http {
 		server_name _;
 		index index.html;
 		keepalive_timeout 5;
-		root /app/public;
+
+    location / {
+  	    root /app/public;
+    }
 
   	location /api {
   	    rewrite    ^/api/?(.*) /$1 break;
