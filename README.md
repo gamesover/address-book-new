@@ -3,7 +3,7 @@ Address Book
 [![Build Status](https://travis-ci.org/gamesover/address-book-pwc.svg?branch=master)](https://travis-ci.org/gamesover/address-book-pwc)
 
 
-This is back end part of Address Book demo. Please access to online app at [heroku](https://address-book-frontend.herokuapp.com/)
+For user to upload address book execl files
 
 ### Technical Stack  ###
 
