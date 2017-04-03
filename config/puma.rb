@@ -5,7 +5,7 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port        3000
+listen      '/tmp/nginx.socket'
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
