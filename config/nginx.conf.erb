@@ -28,11 +28,12 @@ http {
 
 	server {
 		listen <%= ENV["PORT"] %>;
+		server_name _;
 		keepalive_timeout 5;
 		root /public;
 
 		location /api {
-        rewrite ^/api/?(.*) http://app_server/$1 break;
+        rewrite ^/api/?(.*) http://127.0.0.1/$1 break;
     }
 	}
 }
