@@ -22,6 +22,7 @@ before_script:
 
 script:
  - bundle exec rubocop
+ - bundle exec rake db:create
  - bundle exec rake db:schema:load
  - bundle exec rspec
  - cd client && npm run test
