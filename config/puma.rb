@@ -6,7 +6,7 @@ preload_app!
 
 rackup      DefaultRackup
 bind        'unix:///tmp/nginx.socket'
-#port        3000
+# port       3000
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
