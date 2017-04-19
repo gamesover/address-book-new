@@ -1,7 +1,7 @@
-language: ruby
+language: node_js
 
-rvm:
-  - 2.3.3
+node_js:
+  - 6.10.0
 
 env:
   - RAILS_ENV=test
@@ -9,12 +9,13 @@ env:
 addons:
   postgresql: '9.4'
 
+before_install:
+  - rvm install 2.3.3
+
 install:
-  - bundle install
-  - cd client
-  - node -v
-  # update npm
-  - npm install npm -g
+  - gem install bundler
+  - bundle
+  - cd client && npm install && cd ..
 
 before_script:
   - cp config/database.yml.travis config/database.yml
@@ -23,4 +24,4 @@ script:
  - bundle exec rubocop
  - bundle exec rake db:schema:load
  - bundle exec rspec
- - cd client && npm test
+ - cd client && npm run test
