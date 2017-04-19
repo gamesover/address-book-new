@@ -11,7 +11,10 @@ addons:
 
 install:
   - bundle install
-  - cd client && npm install
+  - cd client
+  - node -v
+  # update npm
+  - npm install npm -g
 
 before_script:
   - cp config/database.yml.travis config/database.yml
