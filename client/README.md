@@ -1,46 +1,68 @@
-Address Book Frontend
-========================
-[![Build Status](https://travis-ci.org/gamesover/address-book-frontend.svg?branch=master)](https://travis-ci.org/gamesover/address-book-frontend)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is front end part of Address Book demo. Please access to online app at [heroku](https://address-book-frontend.herokuapp.com/)
+## Available Scripts
 
-### Technical Stack  ###
+In the project directory, you can run:
 
-* Angular 2 as front end single page application
-* AJAX talks with [backend](https://github.com/gamesover/address-book-pwc)
-* This is also a submodule of the above project.
-* Due to heroku limitation(one project can have a web [dyno](https://devcenter.heroku.com/articles/dynos#dyno-configurations) only), the project was split into 2 parts. 
+### `yarn start`
 
-### Heroku Setup ###
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This project relies on 2 [buildpacks](https://devcenter.heroku.com/articles/buildpacks)
-* heroku/nodejs (heroku official version)
-* https://github.com/heroku/heroku-buildpack-static 
-Make sure you config at heroku correctly.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-### Note ###
-* `static.json` is Nginx sever configuration. Reverse proxy is used to bypass CORS. 
-* `tslint` for typescript style check
-* `.travis.yml` for CI
-* you need to link github git repository at heroku, so CD is also implemented
-* When CD, heroku will call `npm heroku-postbuild` and `heroku-build` automatically
-* When Heroku deploys web or worker dyno, it starts with a clean system, so no delete old production files is needed. That's why `heroku-build` is created
-* Heroku only supports to access to 80 and 443 port!
+### `yarn test`
 
-### Dev Env Setup ###
-* Webpack is used for building everything.
-* At root directory, just run `npm install`
-* Then you can run `npm start` to start webpack dev server and access to `http://localhost:8080`(given backend API server is started already)
-* `npm test` is to run karma test cases
-* `npm build` is assuming you deploy at normal production env(virtual machine or cloud). Thus, deleting old folder is usually needed before deploying new code.
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Contribution guidelines ###
+### `yarn build`
 
-* Writing tests
-* Code review
-* Other guidelines
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Who do I talk to? ###
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-* Repo owner or admin
-* Other community or team contact
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
