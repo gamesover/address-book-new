@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "build": "cd client && yarn install && yarn build && cd ..",
-    "deploy": "cp -a client/build/. public/",
+    "deploy": "ln -s client/build public",
     "heroku-postbuild": "yarn build && yarn deploy"
   },
   "engines": {
