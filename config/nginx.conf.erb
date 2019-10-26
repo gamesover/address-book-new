@@ -33,10 +33,11 @@ http {
 	server {
 		listen <%= ENV['PORT'] %>;
 		server_name _;
-		index index.html;
 		keepalive_timeout 5;
-    root /app/public;
-
+	
+		root /app/public;
+		index index.html;
+		
     location / {
   	    try_files $uri $uri/ /index.html;
     }
