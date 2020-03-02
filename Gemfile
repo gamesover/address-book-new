@@ -11,7 +11,7 @@ end
 gem 'pg', '~> 0.19'
 gem 'puma', '~> 3.7.0'
 gem 'rails', '~> 5.0.1'
-gem 'rubocop', '~> 0.47.1', require: false
+gem 'rubocop', '~> 0.48.1', require: false
 
 group :development, :test do
   gem 'capybara', '~> 2.12.0'
