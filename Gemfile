@@ -9,7 +9,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pg', '~> 0.19'
-gem 'puma', '~> 3.7.0'
+gem 'puma', '~> 3.12.4'
 gem 'rails', '~> 5.0.1'
 gem 'rubocop', '~> 0.47.1', require: false
 
